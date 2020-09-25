@@ -141,6 +141,15 @@ class Signal:
         data = self._send_command(payload, block)
         return(data)
 
+    def leave_group(self, recipient_group_id: str, block: bool = False):
+        """
+        Force the Signal user to leave a Signal group.
+        
+        recipient_group_id:  The Base64 string associated with the Signal group.
+        """
+        payload = {"type": "leave_group", "username": self.username, "recipientGroupId": recipient_group_id}
+        self._send_command(payload, block)
+    
     def mark_read(self, recipient: str, timestamps: list, block: bool = False) -> None:
         """
         Mark a message as read.
